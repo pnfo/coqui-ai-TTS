@@ -138,6 +138,7 @@ def wav_to_spec(y, n_fft, hop_length, win_length, center=False):
             return_complex=True,
         )
     )
+    spec = torch.view_as_real(spec)
 
     spec = torch.sqrt(spec.pow(2).sum(-1) + 1e-6)
     return spec
@@ -208,6 +209,7 @@ def wav_to_mel(y, n_fft, num_mels, sample_rate, hop_length, win_length, fmin, fm
             return_complex=True,
         )
     )
+    spec = torch.view_as_real(spec)
 
     spec = torch.sqrt(spec.pow(2).sum(-1) + 1e-6)
     spec = torch.matmul(mel_basis[fmax_dtype_device], spec)

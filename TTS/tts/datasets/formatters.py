@@ -648,7 +648,6 @@ def kss(root_path, meta_file, **kwargs):  # pylint: disable=unused-argument
             items.append({"text": text, "audio_file": wav_file, "speaker_name": speaker_name, "root_path": root_path})
     return items
 
-
 def bel_tts_formatter(root_path, meta_file, **kwargs):  # pylint: disable=unused-argument
     txt_file = os.path.join(root_path, meta_file)
     items = []
@@ -659,4 +658,44 @@ def bel_tts_formatter(root_path, meta_file, **kwargs):  # pylint: disable=unused
             wav_file = os.path.join(root_path, cols[0])
             text = cols[1]
             items.append({"text": text, "audio_file": wav_file, "speaker_name": speaker_name, "root_path": root_path})
+    return items
+
+def pathnirvana(root_path, meta_file, **kwargs):  # pylint: disable=unused-argument
+    """Path Nirvana Sinhala and Pali datasets from https://github.com/pnfo/"""
+    txt_file = os.path.join(root_path, meta_file)
+    items = []
+    with open(txt_file, "r", encoding="utf-8") as ttf:
+        for line in ttf:
+            cols = line.rstrip().split("|")
+            wav_file = os.path.join(root_path, "wavs", cols[0] + ".wav")
+            text = cols[2] # take the second field as the text
+            speaker_name = cols[3]
+            items.append({"text": text, "audio_file": wav_file, "speaker_name": speaker_name, "root_path": root_path})
+    return items
+
+def pathnirvana2(root_path, meta_file, **kwargs):  # pylint: disable=unused-argument
+    """Path Nirvana Sinhala and Pali datasets from https://github.com/pnfo/"""
+    txt_file = os.path.join(root_path, meta_file)
+    items = []
+    with open(txt_file, "r", encoding="utf-8") as ttf:
+        for line in ttf:
+            cols = line.rstrip().split("|")
+            wav_file = os.path.join(root_path, "wavs", cols[0] + ".wav")
+            text = cols[1] # take the first field as the text
+            speaker_name = cols[3]
+            items.append({"text": text, "audio_file": wav_file, "speaker_name": speaker_name, "root_path": root_path})
+    return items
+
+def pathnirvana_mettananda(root_path, meta_file, **kwargs):  # pylint: disable=unused-argument
+    """Path Nirvana Sinhala and Pali datasets from https://github.com/pnfo/"""
+    txt_file = os.path.join(root_path, meta_file)
+    items = []
+    with open(txt_file, "r", encoding="utf-8") as ttf:
+        for line in ttf:
+            cols = line.rstrip().split("|")
+            wav_file = os.path.join(root_path, "wavs", cols[0] + ".wav")
+            text = cols[1] # take the first field as the text
+            speaker_name = cols[3]
+            if speaker_name == "mettananda":
+                items.append({"text": text, "audio_file": wav_file, "speaker_name": speaker_name, "root_path": root_path})
     return items

@@ -132,6 +132,7 @@ core
 recipes/WIP/*
 recipes/ljspeech/LJSpeech-1.1/*
 recipes/vctk/VCTK/*
+recipes/pathnirvana/sinhala_dataset
 recipes/**/*.npy
 recipes/**/*.json
 VCTK-Corpus-removed-silence/*

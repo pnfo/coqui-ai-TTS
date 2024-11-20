@@ -1,3 +1,17 @@
+* Install the TTS using the instructions below - only for synthesizing
+* Run the server such as the following and then go to http://localhost:5002/
+* Input the normalized Sinhala or Pali text - you can use the tool here https://pitaka.lk/tools/converter.html for converting Sinhala letters to Roman
+```bash
+source venv/bin/activate
+python TTS/server/server.py --config_path ../models/sinhala/single-v2.1/config.json --model_path ../models/sinhala/single-v2.1/checkpoint_80000.pth
+```
+For multispeaker you may also want to edit the speaker path within the config.json file
+```bash
+python TTS/server/server.py --config_path ../models/sinhala/multi-v2.0/config.json --speakers_file_path ../models/sinhala/multi-v2.0/speakers.pth --model_path ../models/sinhala/multi-v2.0/checkpoint_70000.pth
+```
+
+For training there is a notebook in the /notebooks folder in this repository
+
 
 ## 🐸Coqui TTS News
 - 📣 Fork of the [original, unmaintained repository](https://github.com/coqui-ai/TTS). New PyPI package: [coqui-tts](https://pypi.org/project/coqui-tts)
